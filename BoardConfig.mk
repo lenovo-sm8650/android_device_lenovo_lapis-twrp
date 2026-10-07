@@ -3,11 +3,11 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-# Lenovo Yoga Tab Plus (TB520FU, "Lapis") - SM8650 (pineapple)
+# Lenovo Yoga Tab Plus (lapis, TB520FU) - SM8650 (pineapple)
 # Based on the stock ZUI_17.5.10.362_260719_ROW firmware.
 #
 
-DEVICE_PATH := device/lenovo/TB520FU
+DEVICE_PATH := device/lenovo/lapis
 
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
