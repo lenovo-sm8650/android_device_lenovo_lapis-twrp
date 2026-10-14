@@ -76,4 +76,3 @@ The locked bootloader only boots it when `vbmeta` chains `recovery` to `testkey_
 - [polygraphene](https://github.com/polygraphene): TB321FU / TB322FC device
   trees, which this tree is based on, and the minuitwrp DRM backend
 - TWRP gerrit changes 7723, 8742, 8744
-- TWRP-Test twrp-16.0 (AIDL GateKeeper)
