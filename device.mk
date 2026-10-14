@@ -23,11 +23,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/kernel:kernel
 PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
 
-# logd (libprocessgroup) aborts without /etc/task_profiles.json; TWRP only
-# ships it as task_profiles/task_profiles_30.json (cf. TWRP gerrit 8739)
-PRODUCT_COPY_FILES += \
-    system/core/libprocessgroup/profiles/task_profiles.json:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/task_profiles.json
-
 # Dynamic partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
@@ -54,36 +49,16 @@ PRODUCT_PACKAGES += \
     android.hardware.fastboot-service.example_recovery \
     fastbootd
 
-# System-side dependencies of the vendor keymint/gatekeeper blobs
-# (the vendor AIDL libs themselves are shipped in recovery/root/vendor/lib64)
+# System-side dependencies of the vendor keymint/gatekeeper blobs that
+# TWRP does not ship itself (the keystore2/keymint/rkp/suspend AIDL
+# libraries are installed by bootable/recovery/prebuilt/Android.mk)
 TARGET_RECOVERY_DEVICE_MODULES += \
     libion \
-    libdmabufheap \
-    android.hardware.common-V2-ndk \
-    android.system.keystore2-V4-ndk \
-    android.security.aaid_aidl-cpp \
-    android.hardware.security.keymint-V3-ndk \
-    android.hardware.security.rkp-V3-ndk \
-    android.hardware.confirmationui-V1-ndk \
-    android.system.suspend-V1-ndk
+    libdmabufheap
 
-# The recovery linker namespace only searches /system/lib64, so every library
-# /system/bin/recovery and /system/bin/keystore2 need must be there (copies in
-# /vendor/lib64 are invisible to them):
-#  - keystore2-V4-ndk: android.security.maintenance-ndk
-#  - aaid_aidl-cpp: libkeystore-attestation-application-id
-#  - keymint-V3-ndk: recovery + keystore2; rkp-V3-ndk, confirmationui-V1-ndk: keystore2
-#  - suspend-V1-ndk: libhardware_legacy (keymint-service-spu-qti, spdaemon)
 RECOVERY_LIBRARY_SOURCE_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libdmabufheap.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.common-V2-ndk.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/android.system.keystore2-V4-ndk.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/android.security.aaid_aidl-cpp.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.security.keymint-V3-ndk.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.security.rkp-V3-ndk.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.confirmationui-V1-ndk.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/android.system.suspend-V1-ndk.so
+    $(TARGET_OUT_SHARED_LIBRARIES)/libdmabufheap.so
 
 # Enable Fuse Passthrough
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.fuse.passthrough.enable=true
