@@ -52,13 +52,18 @@ PRODUCT_PACKAGES += \
 # System-side dependencies of the vendor keymint/gatekeeper blobs that
 # TWRP does not ship itself (the keystore2/keymint/rkp/suspend AIDL
 # libraries are installed by bootable/recovery/prebuilt/Android.mk)
+#  - common-V2-ndk: qseecomd's listener libops.so (via
+#    vendor.qti.hardware.display.config-V7-ndk); without it qseecomd
+#    exits and keymint never starts
 TARGET_RECOVERY_DEVICE_MODULES += \
     libion \
-    libdmabufheap
+    libdmabufheap \
+    android.hardware.common-V2-ndk
 
 RECOVERY_LIBRARY_SOURCE_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libdmabufheap.so
+    $(TARGET_OUT_SHARED_LIBRARIES)/libdmabufheap.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.common-V2-ndk.so
 
 # Enable Fuse Passthrough
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.fuse.passthrough.enable=true
