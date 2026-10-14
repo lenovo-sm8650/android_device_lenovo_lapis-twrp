@@ -8,20 +8,19 @@ Based on ZUI 17.5.10.362 (Android 16). Landscape theme.
 
 ## Features
 
-- [x] Boot (main screen in ~3 s)
+- [x] Boot
 - [x] Display, touch, brightness
 - [x] Decryption (FBE + metadata, PIN)
 - [x] Internal storage
 - [x] ADB
 - [x] Battery / CPU temperature
 - [x] AVB: signed with AOSP `testkey_rsa4096`, rollback index 1
-- [ ] Password / pattern decryption
-- [ ] Backup / restore
-- [ ] Flashing
-- [ ] MTP
-- [ ] Sideload
-- [ ] Fastbootd
-- [ ] USB-OTG
+- [x] Password / pattern decryption
+- [x] Backup / restore
+- [x] Flashing
+- [x] MTP
+- [x] Sideload
+- [x] USB-OTG
 
 ## Build it yourself
 
