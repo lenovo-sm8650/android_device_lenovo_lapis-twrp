@@ -46,3 +46,11 @@ mka recoveryimage
 ```
 
 The locked bootloader only boots it when `vbmeta` chains `recovery` to `testkey_rsa4096` (testkey-resigned firmware).
+
+## Credits
+
+- [TeamWin](https://github.com/TeamWin)
+- [TWRP-Test](https://github.com/TWRP-Test): `twrp-16.0` manifest and sources
+- [polygraphene](https://github.com/polygraphene): TB321FU / TB322FC device
+  trees, which this tree is based on
+- [YuKongA](https://github.com/YuKongA): SM8750 device tree, the recovery VINTF manifest approach
